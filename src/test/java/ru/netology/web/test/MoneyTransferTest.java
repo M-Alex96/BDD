@@ -26,14 +26,14 @@ class MoneyTransferTest {
         var expectedCard1Balance = Card1Balance - amountToTransfer;
         var expectedCard2Balance = Card2Balance + amountToTransfer;
         var CardTransactionPage = dashboardPage.CardTransfer(Card2);
-        dashboardPage = CardTransactionPage.ValidTransaction(String.valueOf(amountToTransfer), Card1);
+        dashboardPage = CardTransactionPage.validTransaction(String.valueOf(amountToTransfer), Card1);
         var actualCard1Balance = dashboardPage.getCardBalance(Card1);
         var actualCard2Balance = dashboardPage.getCardBalance(Card2);
         Assertions.assertEquals(expectedCard1Balance, actualCard1Balance);
         Assertions.assertEquals(expectedCard2Balance, actualCard2Balance);
     }
 
-/**@Test //тест на баг закомментирован чтобы CI не падал
+    @Test
     void shouldFailTransactionIfTransferAmountIsOverTheActualBalance() {
         open("http://localhost:9999");
         var loginPage = new LoginPage();
@@ -48,12 +48,12 @@ class MoneyTransferTest {
         var amountToTransfer = InvalidAmount(Card2Balance);
         var transactionPage = dashboardPage.CardTransfer(Card1);
         transactionPage.transaction(String.valueOf(amountToTransfer), Card2);
-        transactionPage.Error("Ошибка! На балансе недостаточно денежных средств");
+        transactionPage.error("Ошибка! На балансе недостаточно денежных средств");
         var actualCard1Balance = dashboardPage.getCardBalance(Card1);
         var actualCard2Balance = dashboardPage.getCardBalance(Card2);
         Assertions.assertEquals(Card1Balance, actualCard1Balance);
         Assertions.assertEquals(Card2Balance, actualCard2Balance);
-    }*/
+    }
 }
 
 

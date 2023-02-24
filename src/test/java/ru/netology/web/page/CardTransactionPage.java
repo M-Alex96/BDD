@@ -21,7 +21,7 @@ public class CardTransactionPage {
         heading.shouldBe(visible);
     }
 
-    public DashboardPage ValidTransaction(String transactionSum, DataHelper.CardNumber cardNumber) {
+    public DashboardPage validTransaction(String transactionSum, DataHelper.CardNumber cardNumber) {
         transaction(transactionSum, cardNumber);
         return new DashboardPage();
     }
@@ -32,7 +32,7 @@ public class CardTransactionPage {
         actionTransfer.click();
     }
 
-    public void Error (String errorTextMessage) {
+    public void error (String errorTextMessage) {
         errorNotification.shouldHave(text(errorTextMessage), Duration.ofSeconds(15)).shouldBe(visible);
     }
 }
